@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const squares = document.querySelectorAll('#board > div');
     const statusDiv = document.getElementById('status');
+    const newGameButton = document.getElementById('new-game');
     let currentPlayer = 'X';
     const gameState = Array(9).fill(null);
 
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusDiv.classList.add('you-won');
                 } else {
                     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    statusDiv.textContent = `Player ${currentPlayer}'s turn`;
                 }
             }
         });
@@ -32,6 +34,21 @@ document.addEventListener('DOMContentLoaded', function() {
             square.classList.remove('hover');
         });
     });
+
+    // Event listener for the New Game button
+    newGameButton.addEventListener('click', resetGame);
+
+    function resetGame() {
+        // Reset game state
+        gameState.fill(null);
+        squares.forEach(square => {
+            square.textContent = '';
+            square.classList.remove('X', 'O', 'hover');
+        });
+        statusDiv.textContent = "Player X's turn"; // Reset status message
+        statusDiv.classList.remove('you-won'); // Remove winner class
+        currentPlayer = 'X'; // Reset current player
+    }
 
     function checkWinner() {
         const winningCombinations = [
