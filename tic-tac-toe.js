@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const squares = document.querySelectorAll('#board > div');
+    const statusDiv = document.getElementById('status');
     let currentPlayer = 'X';
     const gameState = Array(9).fill(null);
 
@@ -13,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 gameState[index] = currentPlayer;
 
                 if (checkWinner()) {
-                    alert(`Player ${currentPlayer} wins!`);
+                    statusDiv.textContent = `Congratulations! ${currentPlayer} is the Winner!`;
+                    statusDiv.classList.add('you-won');
                 } else {
                     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
                 }
