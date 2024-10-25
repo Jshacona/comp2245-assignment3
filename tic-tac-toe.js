@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+
+        square.addEventListener('mouseenter', () => {
+            if (!square.textContent) {
+                square.classList.add('hover');
+            }
+        });
+
+        square.addEventListener('mouseleave', () => {
+            square.classList.remove('hover');
+        });
     });
 
     function checkWinner() {
